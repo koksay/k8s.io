@@ -38,6 +38,7 @@ ARG OPA_VERSION=0.53.1
 ARG SHELLCHECK_VERSION=0.8.0
 ARG TFSWITCH_VERSION=0.13.1308
 ARG RCLONE_VERSION=1.62.2
+ARG HELM_VERSION=3.14.2
 
 # build everything in /build
 WORKDIR /build
@@ -139,6 +140,10 @@ RUN set -o errexit nounset pipefail \
         && pushd ./test-infra \
         && go build -o /usr/local/bin/pr-creator ./robots/pr-creator \
         && popd \
+    && echo "Installing Helm" \
+        && curl -fsSL https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz --output helm.tar.gz \
+        && tar xf helm.tar.gz -C /usr/local/bin --strip-components 1 linux-amd64/helm \
+        && rm helm.tar.gz \
     && echo "Outputting version info to confirm installation of expected tools ..." \
         && apt list --installed         | tee apt-list.txt \
 	&& aws --version		| tee awscli-version.txt \
@@ -162,6 +167,7 @@ RUN set -o errexit nounset pipefail \
         && tfswitch --version           | tee tfswitch-version.txt \
         && yamllint --version           | tee yamllint-verison.txt \
         && yq --version                 | tee yq-version.txt \
+        && helm version                 | tee helm-version.txt \
     && echo "Cleaning up ..." \
         && apt autoremove -y \
         && apt clean -y \
