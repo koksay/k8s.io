@@ -22,5 +22,5 @@ metadata:
 spec:
   interval: 5m0s
   ref:
-    branch: separate-canary-manifests
-  url: https://github.com/pkprzekwas/k8s.io
+    branch: canary-testing
+  url: https://github.com/koksay/k8s.io
