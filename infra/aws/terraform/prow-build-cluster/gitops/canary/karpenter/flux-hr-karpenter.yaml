@@ -30,6 +30,6 @@ spec:
           memory: 1Gi
     serviceAccount:
       annotations:
-        eks.amazonaws.com/role-arn: arn:aws:iam::054318140392:role/KarpenterController-20240527081538529900000002
+        eks.amazonaws.com/role-arn: arn:aws:iam::054318140392:role/Karpenter-prow-canary-cluster-20240527081538530000000004
     settings:
       clusterName: prow-canary-cluster
