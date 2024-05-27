@@ -7,4 +7,4 @@ metadata:
 spec:
   interval: 5m0s
   type: oci
-  url: oci://public.ecr.aws/karpenter/karpenter
+  url: oci://public.ecr.aws/karpenter
