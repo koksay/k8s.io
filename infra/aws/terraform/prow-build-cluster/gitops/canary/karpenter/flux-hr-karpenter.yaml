@@ -33,3 +33,4 @@ spec:
         eks.amazonaws.com/role-arn: arn:aws:iam::054318140392:role/Karpenter-prow-canary-cluster-20240527081538530000000004
     settings:
       clusterName: prow-canary-cluster
+      interruptionQueue: Karpenter-prow-canary-cluster
