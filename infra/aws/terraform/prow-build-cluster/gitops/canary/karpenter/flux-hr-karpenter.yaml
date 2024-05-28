@@ -30,6 +30,7 @@ spec:
           memory: 1Gi
     serviceAccount:
       annotations:
+        # terraform state show module.karpenter.aws_iam_role.controller\[0\] | grep " arn "
         eks.amazonaws.com/role-arn: arn:aws:iam::054318140392:role/KarpenterController-20240527081538529900000002
     settings:
       clusterName: prow-canary-cluster

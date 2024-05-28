@@ -37,6 +37,7 @@ locals {
   auto_scaling_tags = {
     "k8s.io/cluster-autoscaler/${var.cluster_name}" = "owned"
     "k8s.io/cluster-autoscaler/enabled"             = true
+    "karpenter.sh/discovery"                        = var.cluster_name
   }
 
   azs = slice(data.aws_availability_zones.available.names, 0, 3)
@@ -81,6 +82,17 @@ locals {
     }
   ]
 
+  karpenter_roles = [
+    {
+      rolearn  = module.karpenter.iam_role_arn
+      username = "system:node:{{EC2PrivateDNSName}}"
+      groups = [
+        "system:bootstrappers",
+        "system:nodes"
+      ]
+    }
+  ]
+
   aws_auth_roles = flatten([
     local.configure_prow ? [
       # Allow access to the Prow-EKS-Admin IAM role (used by Prow directly).
@@ -93,6 +105,7 @@ locals {
       }
     ] : [],
     local.cluster_admin_roles,
-    local.cluster_viewer_roles
+    local.cluster_viewer_roles,
+    local.karpenter_roles
   ])
 }
