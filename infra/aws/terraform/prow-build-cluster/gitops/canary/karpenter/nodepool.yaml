@@ -7,6 +7,7 @@ spec:
   template:
     spec:
       requirements:
+        # https://karpenter.sh/docs/reference/instance-types/#r5adxlarge
         - key: kubernetes.io/arch
           operator: In
           values: ["amd64"]
@@ -14,17 +15,17 @@ spec:
           operator: In
           values: ["linux"]
         - key: karpenter.sh/capacity-type
-          operator: In
-          values: ["on-demand"]
+          operator: NotIn
+          values: ["spot"]
         - key: "karpenter.k8s.aws/instance-family"
           operator: In
           values: ["r5ad"]
         - key: karpenter.k8s.aws/instance-category
           operator: In
           values: ["r"]
-        - key: "karpenter.k8s.aws/instance-cpu"
+        - key: "karpenter.k8s.aws/instance-size"
           operator: In
-          values: ["4"]
+          values: ["xlarge"]
         - key: karpenter.k8s.aws/instance-generation
           operator: Gt
           values: ["2"]
