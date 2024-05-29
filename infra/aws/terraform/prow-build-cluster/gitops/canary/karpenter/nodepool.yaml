@@ -34,7 +34,7 @@ spec:
         kind: EC2NodeClass
         name: default
   limits:
-    cpu: 1000
+    cpu: 3500
   disruption:
     consolidationPolicy: WhenUnderutilized
     expireAfter: 720h # 30 * 24h = 720h
