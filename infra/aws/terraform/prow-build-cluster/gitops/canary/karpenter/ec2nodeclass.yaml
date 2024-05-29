@@ -14,3 +14,6 @@ spec:
         kubernetes.io/cluster/prow-canary-cluster: "owned"
   amiSelectorTerms:
     - id: ami-066c62bb333a37820
+  tags:
+    Cluster: prow-canary-cluster
+    Name: build-karpenter

@@ -31,7 +31,7 @@ spec:
           values: ["r"]
         - key: "karpenter.k8s.aws/instance-size"
           operator: In
-          values: ["xlarge"]
+          values: ["2xlarge"]
         - key: karpenter.k8s.aws/instance-generation
           operator: Gt
           values: ["2"]
