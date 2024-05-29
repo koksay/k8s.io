@@ -7,6 +7,12 @@ spec:
   template:
     spec:
       requirements:
+        - key: topology.kubernetes.io/zone
+          operator: In
+          values:
+            - us-east-2a
+            - us-east-2b
+            - us-east-2c
         # https://karpenter.sh/docs/reference/instance-types/#r5adxlarge
         - key: kubernetes.io/arch
           operator: In
