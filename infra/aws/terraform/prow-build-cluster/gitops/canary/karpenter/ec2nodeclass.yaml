@@ -17,3 +17,4 @@ spec:
   tags:
     Cluster: prow-canary-cluster
     Name: build-karpenter
+  detailedMonitoring: true

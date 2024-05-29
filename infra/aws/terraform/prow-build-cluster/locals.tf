@@ -84,7 +84,7 @@ locals {
 
   karpenter_roles = [
     {
-      rolearn  = module.karpenter.iam_role_arn
+      rolearn  = module.karpenter.node_iam_role_arn
       username = "system:node:{{EC2PrivateDNSName}}"
       groups = [
         "system:bootstrappers",
