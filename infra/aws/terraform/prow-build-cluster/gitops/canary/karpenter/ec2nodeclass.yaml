@@ -11,7 +11,7 @@ spec:
         karpenter.sh/discovery: "prow-canary-cluster"
   securityGroupSelectorTerms:
     - tags:
-        kubernetes.io/cluster/prow-canary-cluster: "owned"
+        Name: "prow-canary-cluster-node"
   amiSelectorTerms:
     - id: ami-066c62bb333a37820
   tags:
