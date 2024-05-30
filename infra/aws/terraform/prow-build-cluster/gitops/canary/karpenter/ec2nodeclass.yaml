@@ -18,3 +18,20 @@ spec:
     Cluster: prow-canary-cluster
     Name: build-karpenter
   detailedMonitoring: true
+  userData: |
+      # Bottlerocket instances don't have SSH installed by default, but
+      # there's the admin container that can be enabled and that comes
+      # with SSH installed and enabled
+      [settings.host-containers.admin]
+      enabled = true
+
+      # Bootstrap the instance using our bootstrap script embeded in a Docker image
+      [settings.bootstrap-containers.bootstrap]
+      source = "public.ecr.aws/q4o2z4d8/k8s-prow-bottlerocket:v0.0.2"
+      mode = "always"
+      essential = true
+
+      [settings.kernel.sysctl]
+      "fs.inotify.max_user_watches" = "1048576"
+      "fs.inotify.max_user_instances" = "8192"
+      "vm.min_free_kbytes" = "540672"
