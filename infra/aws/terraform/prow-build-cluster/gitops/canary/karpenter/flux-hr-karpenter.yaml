@@ -29,8 +29,6 @@ spec:
         name: karpenter
         namespace: flux-system
       version: 0.37.0
-  dependsOn:
-  - name: karpenter-crd
   interval: 5m0s
   values:
     controller:
